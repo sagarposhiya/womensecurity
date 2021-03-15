@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Women Security</string>
+    <!--to toggle the open close button
+       of the navigation drawer-->
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="_1234567890">1234567890</string>
+    <string name="didn_t_receive_the_otp">Didn\'t receive the OTP?</string>
+    <string name="verify">Verify</string>
+    <string name="username_already_exists" />
+</resources>
