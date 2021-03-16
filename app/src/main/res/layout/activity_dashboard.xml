@@ -81,6 +81,7 @@
                     android:layout_height="105dp"
                     android:src="@drawable/ecall"
                     android:layout_marginStart="50dp"
+                    android:onClick="onemergencycall"
                     android:layout_marginLeft="50dp" />
 
                 <TextView

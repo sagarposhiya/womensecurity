@@ -25,6 +25,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.womensecurity.databse.DatabaseClient;
 import com.example.womensecurity.models.AdharCard;
+import com.example.womensecurity.models.Register;
+import com.example.womensecurity.utils.AppUtils;
+import com.example.womensecurity.utils.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -83,13 +86,15 @@ public class RegisterActivity extends AppCompatActivity implements Validator{
     private DatabaseReference databaseReference;
     boolean isAllFieldsChecked = false;
 
+    private DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         btndate=(ImageButton)findViewById(R.id.date);
         txtdate=(EditText)findViewById(R.id.inputdob);
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         inputFirst = findViewById(R.id.inputFirst);
         inputLast = findViewById(R.id.inputLast);
         inputAdd = findViewById(R.id.inputAdd);
@@ -123,56 +128,24 @@ public class RegisterActivity extends AppCompatActivity implements Validator{
                 isAllFieldsChecked = CheckAllFields();
                 if (isAllFieldsChecked) {
                     progressBar.setVisibility(View.VISIBLE);
-                    //Start ProgressBar first (Set visibility VISIBLE)
-                    Handler handler = new Handler(Looper.getMainLooper());
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            //Starting Write and Read data with URL
-                            //Creating array for parameters
-                            String[] field = new String[10];
-                            field[0] = "firstname";
-                            field[1] = "lastname";
-                            field[2] = "address";
-                            field[3] = "mobileno";
-                            field[4] = "email";
-                            field[5] = "emer1";
-                            field[6] = "emer2";
-                            field[7] = "emer3";
-                            field[8] = "dob";
-                            field[9] = "password";
-                            //Creating array for data
-                            String[] data = new String[10];
-                            data[0] = "firstname";
-                            data[1] = "lastname";
-                            data[2] = "address";
-                            data[3] = "mobileno";
-                            data[4] = "email";
-                            data[5] = "emer1";
-                            data[6] = "emer2";
-                            data[7] = "emer3";
-                            data[8] = "dob";
-                            data[9] = "password";
 
-                            PutData putData = new PutData("https://192.168.1.3/LoginRegister/signup.php?_ijt=1tvl18nsrucscbasmdkrje2pb1", "POST", field, data);
-                            if (putData.startPut()) {
-                                if (putData.onComplete()) {
-                                    progressBar.setVisibility(View.GONE);
-                                    String result = putData.getResult();
-                                    if (result.equals("Sign up Failed")){
-                                        Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(getApplicationContext(), Dashboard.class);
-                                        startActivity(i);
-                                        finish();
-                                    }else{
-                                        Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
-                                    }
-                                    Log.i("PutData", result);
-                                }
-                            }
-                            //End Write and Read data with URL
-                        }
-                    });
+                    Register register = new Register();
+                    register.setAddress(address);
+                    register.setDate(dob);
+                    register.setEmail(email);
+                    register.setEmer1(emer1);
+                    register.setEmer2(emer2);
+                    register.setEmer3(emer3);
+                    register.setFirstName(firstname);
+                    register.setLastName(lastname);
+                    register.setMobile(mobileno);
+                   // register.setPassword(password);
+
+                    String userId = AppUtils.getStringPreference(RegisterActivity.this, Constants.userId);
+                    mDatabase.child("users").child(userId).setValue(register);
+
+                    saveUser(register);
+
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"All field required", Toast.LENGTH_SHORT).show();
@@ -189,6 +162,33 @@ public class RegisterActivity extends AppCompatActivity implements Validator{
 
             }
         });
+    }
+
+    private void saveUser(final Register register) {
+
+        class saveUser extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+
+                //adding to database
+                DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
+                        .registerDao()
+                        .insert(register);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                finish();
+                startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        saveUser st = new saveUser();
+        st.execute();
     }
 
     private void getTasks() {

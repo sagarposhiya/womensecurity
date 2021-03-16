@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.womensecurity.utils.AppUtils;
+import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.views.SacnnerActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -63,6 +65,8 @@ public class verifyotp extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    AppUtils.setStringPreference(verifyotp.this, Constants.userId,task.getResult().getUser().getUid());
+                    AppUtils.setBooleanPreference(verifyotp.this,Constants.isLogin,true);
                     sendToMain();
                     progressDialog.dismiss();
                 } else {
@@ -75,10 +79,10 @@ public class verifyotp extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if (currentUser != null) {
-            sendToMain();
-        }
+//        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+//        if (currentUser != null) {
+//            sendToMain();
+//        }
     }
     private void sendToMain() {
         startActivity(new Intent(verifyotp.this, SacnnerActivity.class));

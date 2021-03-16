@@ -8,6 +8,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.example.womensecurity.utils.AppUtils;
+import com.example.womensecurity.utils.Constants;
+
 public class MainActivity extends AppCompatActivity {
     Animation topanim;
     ImageView image;
@@ -40,9 +43,14 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 finally {
-                    Intent i=new Intent(MainActivity.this,splashscreen.class);
-                    startActivity(i);
-                    finish();
+                    boolean isLogin = AppUtils.getBooleanPreference(MainActivity.this, Constants.isLogin);
+                    if (!isLogin) {
+                        Intent i = new Intent(MainActivity.this, splashscreen.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        startActivity(new Intent(MainActivity.this,RegisterActivity.class));
+                    }
 
                 }
             }
