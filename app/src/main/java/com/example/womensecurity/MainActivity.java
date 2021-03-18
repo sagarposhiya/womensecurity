@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     } else {
-                        startActivity(new Intent(MainActivity.this,RegisterActivity.class));
+                        startActivity(new Intent(MainActivity.this,Dashboard.class));
                     }
 
                 }

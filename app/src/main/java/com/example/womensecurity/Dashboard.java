@@ -1,7 +1,10 @@
 package com.example.womensecurity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.womensecurity.databse.DatabaseClient;
@@ -27,11 +32,14 @@ public class Dashboard extends AppCompatActivity
     ImageView siren;
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
+    private static final int CALL_PHONE = 101;
     Register register;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        if(!checkCallPermission()){return;}
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
         drawerLayout = findViewById(R.id.my_drawer_layout);
@@ -69,7 +77,15 @@ public class Dashboard extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //Runtime permission
+    public boolean checkCallPermission (){
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE)
+                == PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE}, CALL_PHONE);
+            return false;
+        }
+        return true;
+    }
     public void onSecurityCall(View view){
         Intent in=new Intent(Dashboard.this, SecurityCall.class);
         startActivity(in);
@@ -94,9 +110,9 @@ public class Dashboard extends AppCompatActivity
         AlertDialog dialog
                 = builder.create();
 
-        TextView txtOne = customLayout.findViewById(R.id.txtOne);
-        TextView txtTwo = customLayout.findViewById(R.id.txtTwo);
-        TextView txtThree = customLayout.findViewById(R.id.txtThree);
+        final TextView txtOne = customLayout.findViewById(R.id.txtOne);
+        final TextView txtTwo = customLayout.findViewById(R.id.txtTwo);
+        final TextView txtThree = customLayout.findViewById(R.id.txtThree);
 
         if (register != null) {
             txtOne.setText(register.getEmer1());
@@ -105,9 +121,142 @@ public class Dashboard extends AppCompatActivity
         } else {
             Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
         }
+
+        txtOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String numberOne = txtOne.getText().toString();
+                // Call
+                Intent callIntent1 = new Intent(Intent.ACTION_CALL);
+                callIntent1.setData(Uri.parse("tel:"+numberOne));
+
+                if (ActivityCompat.checkSelfPermission(Dashboard.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent1);
+            }
+        });
+
+        txtTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String numberTwo = txtTwo.getText().toString();
+
+                Intent callIntent2= new Intent(Intent.ACTION_CALL);
+                callIntent2.setData(Uri.parse("tel:"+numberTwo));
+
+                if (ActivityCompat.checkSelfPermission(Dashboard.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent2);
+            }
+        });
+
+        txtThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String numberThree = txtThree.getText().toString();
+
+                Intent callIntent3= new Intent(Intent.ACTION_CALL);
+                callIntent3.setData(Uri.parse("tel:"+numberThree));
+
+                if (ActivityCompat.checkSelfPermission(Dashboard.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent3);
+            }
+        });
+
         dialog.show();
     }
 
+    public void onEmergencyMessage(View view){
+
+        // Create an alert builder
+        AlertDialog.Builder builder
+                = new AlertDialog.Builder(this);
+        builder.setTitle("Emergency Contact");
+
+        // set the custom layout
+        final View customLayout
+                = getLayoutInflater()
+                .inflate(
+                        R.layout.dialogbox,
+                        null);
+        builder.setView(customLayout);
+
+        // create and show
+        // the alert dialog
+        AlertDialog dialog
+                = builder.create();
+
+        final TextView txtOne = customLayout.findViewById(R.id.txtOne);
+        final TextView txtTwo = customLayout.findViewById(R.id.txtTwo);
+        final TextView txtThree = customLayout.findViewById(R.id.txtThree);
+
+        if (register != null) {
+            txtOne.setText(register.getEmer1());
+            txtTwo.setText(register.getEmer2());
+            txtThree.setText(register.getEmer3());
+        } else {
+            Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
+        }
+
+        txtOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String numberOne = txtOne.getText().toString();
+                // Call
+                Intent callIntent1 = new Intent(Intent.ACTION_CALL);
+                callIntent1.setData(Uri.parse("tel:"+numberOne));
+
+                if (ActivityCompat.checkSelfPermission(Dashboard.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent1);
+            }
+        });
+
+        txtTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String numberTwo = txtTwo.getText().toString();
+
+                Intent callIntent2= new Intent(Intent.ACTION_CALL);
+                callIntent2.setData(Uri.parse("tel:"+numberTwo));
+
+                if (ActivityCompat.checkSelfPermission(Dashboard.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent2);
+            }
+        });
+
+        txtThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String numberThree = txtThree.getText().toString();
+
+                Intent callIntent3= new Intent(Intent.ACTION_CALL);
+                callIntent3.setData(Uri.parse("tel:"+numberThree));
+
+                if (ActivityCompat.checkSelfPermission(Dashboard.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent3);
+            }
+        });
+
+        dialog.show();
+    }
     // Do something with the data
     // coming from the AlertDialog
     private void sendDialogDataToActivity(String data)
