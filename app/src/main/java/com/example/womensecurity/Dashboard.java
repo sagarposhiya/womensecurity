@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.womensecurity.databse.DatabaseClient;
 import com.example.womensecurity.models.AdharCard;
 import com.example.womensecurity.models.Register;
+import com.example.womensecurity.utils.GPSTracker;
 
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class Dashboard extends AppCompatActivity
         setContentView(R.layout.activity_dashboard);
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
+        getLocation();
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
 
@@ -57,11 +60,45 @@ public class Dashboard extends AppCompatActivity
         });
     }
 
-    // override the onOptionsItemSelected()
-    // function to implement
-    // the item click listener callback
-    // to open and close the navigation
-    // drawer when the icon is clicked
+    private void getLocation() {
+
+        GPSTracker gpsTracker = new GPSTracker(this,this);
+
+        if (gpsTracker.getIsGPSTrackingEnabled())
+        {
+            String stringLatitude = String.valueOf(gpsTracker.latitude);
+//            textview = (TextView)findViewById(R.id.fieldLatitude);
+//            textview.setText(stringLatitude);
+
+            String stringLongitude = String.valueOf(gpsTracker.longitude);
+//            textview = (TextView)findViewById(R.id.fieldLongitude);
+//            textview.setText(stringLongitude);
+
+            String country = gpsTracker.getCountryName(this);
+//            textview = (TextView)findViewById(R.id.fieldCountry);
+//            textview.setText(country);
+
+            String city = gpsTracker.getLocality(this);
+//            textview = (TextView)findViewById(R.id.fieldCity);
+//            textview.setText(city);
+
+            String postalCode = gpsTracker.getPostalCode(this);
+//            textview = (TextView)findViewById(R.id.fieldPostalCode);
+//            textview.setText(postalCode);
+
+            String addressLine = gpsTracker.getAddressLine(this);
+//            textview = (TextView)findViewById(R.id.fieldAddressLine);
+//            textview.setText(addressLine);
+
+            Log.e("LOCATION","Latitude :- " + stringLatitude + "  Longitude :- " + stringLongitude + " \n Country :- " + country + " City :- " + city
+                + "  Address :- " + addressLine);
+        }
+        else
+        {
+            gpsTracker.showSettingsAlert();
+        }
+    }
+
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
