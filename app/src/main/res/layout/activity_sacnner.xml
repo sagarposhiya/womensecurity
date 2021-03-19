@@ -6,14 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".views.SacnnerActivity">
+    tools:context=".views.SacnnerActivity"
+    android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="334dp"
+        android:foregroundGravity="center"
+        android:layout_height="250dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-250dp"
+        android:src="@drawable/black_ws" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aadharcard Scanner"
+        android:textColor="@color/contentTextColor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="Please scan your aadharcard\n here !!"
+        android:textSize="14dp"/>
     <Button
         android:id="@+id/btnScanning"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:text="Scan Adharcard"/>
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@color/themeColor"
+        android:text="Scan Adharcard"
+        android:textStyle="bold"/>
 
 </LinearLayout>
