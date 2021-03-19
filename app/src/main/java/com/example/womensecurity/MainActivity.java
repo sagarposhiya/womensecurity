@@ -44,10 +44,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 finally {
                     boolean isLogin = AppUtils.getBooleanPreference(MainActivity.this, Constants.isLogin);
+                    boolean isRegistered = AppUtils.getBooleanPreference(MainActivity.this, Constants.isRegistered);
                     if (!isLogin) {
                         Intent i = new Intent(MainActivity.this, splashscreen.class);
                         startActivity(i);
                         finish();
+                    } else if (!isRegistered){
+                        startActivity(new Intent(MainActivity.this,RegisterActivity.class));
                     } else {
                         startActivity(new Intent(MainActivity.this,Dashboard.class));
                     }
