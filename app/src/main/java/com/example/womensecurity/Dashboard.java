@@ -25,6 +25,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.womensecurity.databse.DatabaseClient;
 import com.example.womensecurity.models.AdharCard;
 import com.example.womensecurity.models.Register;
+import com.example.womensecurity.utils.AppUtils;
+import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.utils.GPSTracker;
 
 import java.util.List;
@@ -44,7 +46,7 @@ public class Dashboard extends AppCompatActivity
         if(!checkCallPermission()){return;}
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
-        getLocation();
+
         drawerLayout = findViewById(R.id.my_drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
 
@@ -66,6 +68,8 @@ public class Dashboard extends AppCompatActivity
                 mediaPlayer.start();
             }
         });
+
+        getLocation();
     }
 
     private void getLocation() {
@@ -75,28 +79,22 @@ public class Dashboard extends AppCompatActivity
         if (gpsTracker.getIsGPSTrackingEnabled())
         {
             String stringLatitude = String.valueOf(gpsTracker.latitude);
-//            textview = (TextView)findViewById(R.id.fieldLatitude);
-//            textview.setText(stringLatitude);
+            AppUtils.setStringPreference(this, Constants.latitude,stringLatitude);
 
             String stringLongitude = String.valueOf(gpsTracker.longitude);
-//            textview = (TextView)findViewById(R.id.fieldLongitude);
-//            textview.setText(stringLongitude);
+            AppUtils.setStringPreference(this, Constants.longitude,stringLongitude);
 
             String country = gpsTracker.getCountryName(this);
-//            textview = (TextView)findViewById(R.id.fieldCountry);
-//            textview.setText(country);
+            AppUtils.setStringPreference(this, Constants.country,country);
 
             String city = gpsTracker.getLocality(this);
-//            textview = (TextView)findViewById(R.id.fieldCity);
-//            textview.setText(city);
+            AppUtils.setStringPreference(this, Constants.city,city);
 
             String postalCode = gpsTracker.getPostalCode(this);
-//            textview = (TextView)findViewById(R.id.fieldPostalCode);
-//            textview.setText(postalCode);
+
 
             String addressLine = gpsTracker.getAddressLine(this);
-//            textview = (TextView)findViewById(R.id.fieldAddressLine);
-//            textview.setText(addressLine);
+            AppUtils.setStringPreference(this, Constants.address,addressLine);
 
             Log.e("LOCATION","Latitude :- " + stringLatitude + "  Longitude :- " + stringLongitude + " \n Country :- " + country + " City :- " + city
                 + "  Address :- " + addressLine);
@@ -117,8 +115,9 @@ public class Dashboard extends AppCompatActivity
     //Runtime permission
     public boolean checkCallPermission (){
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE)
+                == PackageManager.PERMISSION_DENIED || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
                 == PackageManager.PERMISSION_DENIED){
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE}, CALL_PHONE);
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE,Manifest.permission.SEND_SMS}, CALL_PHONE);
             return false;
         }
         return true;
@@ -247,15 +246,7 @@ public class Dashboard extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 String numberOne = txtOne.getText().toString();
-                // Call
-                Intent callIntent1 = new Intent(Intent.ACTION_CALL);
-                callIntent1.setData(Uri.parse("tel:"+numberOne));
-
-                if (ActivityCompat.checkSelfPermission(Dashboard.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                startActivity(callIntent1);
+                AppUtils.sendSMS(numberOne,AppUtils.getMessageFormate(Dashboard.this));
             }
         });
 
@@ -265,14 +256,7 @@ public class Dashboard extends AppCompatActivity
 
                 String numberTwo = txtTwo.getText().toString();
 
-                Intent callIntent2= new Intent(Intent.ACTION_CALL);
-                callIntent2.setData(Uri.parse("tel:"+numberTwo));
-
-                if (ActivityCompat.checkSelfPermission(Dashboard.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                startActivity(callIntent2);
+                AppUtils.sendSMS(numberTwo,AppUtils.getMessageFormate(Dashboard.this));
             }
         });
 
@@ -280,15 +264,7 @@ public class Dashboard extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 String numberThree = txtThree.getText().toString();
-
-                Intent callIntent3= new Intent(Intent.ACTION_CALL);
-                callIntent3.setData(Uri.parse("tel:"+numberThree));
-
-                if (ActivityCompat.checkSelfPermission(Dashboard.this,
-                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                startActivity(callIntent3);
+                AppUtils.sendSMS(numberThree,AppUtils.getMessageFormate(Dashboard.this));
             }
         });
 

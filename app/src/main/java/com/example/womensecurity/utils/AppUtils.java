@@ -64,17 +64,25 @@ public class AppUtils {
         return formatter.format(calendar.getTime());
     }
 
-    public void sendSMS(String phoneNo, String msg) {
+    public static void sendSMS(String phoneNo, String msg) {
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, msg, null, null);
 //            Toast.makeText((), "Message Sent",
 //                    Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
-//            Toast.makeText(getApplicationContext(),ex.getMessage().toString(),
-//                    Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
+    }
+
+    public static String getMessageFormate(Context context){
+        String message = "";
+        String latitude = AppUtils.getStringPreference(context,Constants.latitude);
+        String longitude = AppUtils.getStringPreference(context,Constants.latitude);
+        String address = AppUtils.getStringPreference(context,Constants.address);
+        String mapling = "Map Link : " + Constants.mapUrl + latitude + "," + longitude;         
+        message = "Hi, I am in trouble, Please help me \n " + mapling + " \n\n Address : " + address;
+        return message;
     }
 
 }
