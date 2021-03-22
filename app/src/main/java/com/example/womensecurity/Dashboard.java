@@ -43,7 +43,9 @@ public class Dashboard extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        if(!checkCallPermission()){return;}
+        //if(!checkCallPermission()){return;}
+
+        checkCallPermission();;
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
 
@@ -115,8 +117,8 @@ public class Dashboard extends AppCompatActivity
     //Runtime permission
     public boolean checkCallPermission (){
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE)
-                == PackageManager.PERMISSION_DENIED || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
-                == PackageManager.PERMISSION_DENIED){
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE,Manifest.permission.SEND_SMS}, CALL_PHONE);
             return false;
         }
@@ -209,7 +211,10 @@ public class Dashboard extends AppCompatActivity
 
         dialog.show();
     }
-
+    public void onlocation(View view){
+            Intent i=new Intent(Dashboard.this,location.class);
+            startActivity(i);
+    }
     public void onEmergencyMessage(View view){
 
         // Create an alert builder

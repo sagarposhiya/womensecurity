@@ -69,7 +69,7 @@ public class AppUtils {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, msg, null, null);
 //            Toast.makeText((), "Message Sent",
-//                    Toast.LENGTH_LONG).show();
+//      +              Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
