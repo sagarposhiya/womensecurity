@@ -3,18 +3,23 @@ package com.example.womensecurity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.ConditionVariable;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +33,7 @@ import com.example.womensecurity.models.Register;
 import com.example.womensecurity.utils.AppUtils;
 import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.utils.GPSTracker;
+import com.example.womensecurity.views.MainChat;
 
 import java.util.List;
 
@@ -94,6 +100,8 @@ public class Dashboard extends AppCompatActivity
 
             String postalCode = gpsTracker.getPostalCode(this);
 
+            String code = gpsTracker.getCountryCode(this);
+            AppUtils.setStringPreference(this, Constants.code,code);
 
             String addressLine = gpsTracker.getAddressLine(this);
             AppUtils.setStringPreference(this, Constants.address,addressLine);
@@ -140,7 +148,7 @@ public class Dashboard extends AppCompatActivity
                 = getLayoutInflater()
                 .inflate(
                         R.layout.dialogbox,
-                        null);
+                        null);              
         builder.setView(customLayout);
 
         // create and show
@@ -215,6 +223,32 @@ public class Dashboard extends AppCompatActivity
             Intent i=new Intent(Dashboard.this,location.class);
             startActivity(i);
     }
+
+    public void onChat(View view){
+        Intent i= new Intent(Dashboard.this, MainChat.class);
+        startActivity(i);
+    }
+
+    public void onRecord(View View){
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 100);
+        startActivityForResult(intent, 1);
+    }
+
+    protected void onActivityResult(int requestCode, int resultcode, @Nullable Intent data) {
+
+        super.onActivityResult(requestCode, resultcode, data);
+        if (resultcode == RESULT_OK && requestCode == 1) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            VideoView videoView = new VideoView(this);
+            assert data != null;
+            videoView.setVideoURI(data.getData());
+            videoView.start();
+            builder.setView(videoView).show();
+        }
+    }
+
     public void onEmergencyMessage(View view){
 
         // Create an alert builder

@@ -80,6 +80,7 @@ public class AppUtils {
         String latitude = AppUtils.getStringPreference(context,Constants.latitude);
         String longitude = AppUtils.getStringPreference(context,Constants.latitude);
         String address = AppUtils.getStringPreference(context,Constants.address);
+        String country = AppUtils.getStringPreference(context,Constants.country);
         String mapling = "Map Link : " + Constants.mapUrl + latitude + "," + longitude;         
         message = "Hi, I am in trouble, Please help me \n " + mapling + " \n\n Address : " + address;
         return message;
