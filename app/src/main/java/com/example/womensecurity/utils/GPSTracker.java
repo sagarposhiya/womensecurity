@@ -320,6 +320,18 @@ public class GPSTracker extends Service implements LocationListener {  // Get Cl
         }
     }
 
+    public String getCountryCode(Context context) {
+        List<Address> addresses = getGeocoderAddress(context);
+        if (addresses != null && addresses.size() > 0) {
+            Address address = addresses.get(0);
+            String countryName = address.getCountryCode();
+
+            return countryName;
+        } else {
+            return null;
+        }
+    }
+
     @Override
     public void onLocationChanged(Location location) {
     }

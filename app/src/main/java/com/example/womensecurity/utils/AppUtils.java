@@ -69,7 +69,7 @@ public class AppUtils {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, msg, null, null);
 //            Toast.makeText((), "Message Sent",
-//                    Toast.LENGTH_LONG).show();
+//      +              Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -80,6 +80,7 @@ public class AppUtils {
         String latitude = AppUtils.getStringPreference(context,Constants.latitude);
         String longitude = AppUtils.getStringPreference(context,Constants.latitude);
         String address = AppUtils.getStringPreference(context,Constants.address);
+        String country = AppUtils.getStringPreference(context,Constants.country);
         String mapling = "Map Link : " + Constants.mapUrl + latitude + "," + longitude;         
         message = "Hi, I am in trouble, Please help me \n " + mapling + " \n\n Address : " + address;
         return message;

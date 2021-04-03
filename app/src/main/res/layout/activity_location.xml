@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context=".location">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="168dp"
+                android:layout_height="133dp"
+                android:layout_gravity="center"
+                android:src="@drawable/black_ws" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:text="Welcome to Location Tracker"
+                android:textColor="@color/contentTextColor"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your Current Location Details"
+                        android:layout_gravity="center"
+                        android:textColor="@color/contentTextColor"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address :"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/contentTextColor"/>
+
+                    <TextView
+                        android:id="@+id/textadd"
+                        android:layout_width="250dp"
+                        android:layout_marginLeft="90dp"
+                        android:layout_marginTop="-20dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="90dp"
+                        android:background="@color/colorPrimary"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Country :"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/contentTextColor"/>
+
+                    <TextView
+                        android:id="@+id/textcountry"
+                        android:layout_width="250dp"
+                        android:layout_marginLeft="90dp"
+                        android:layout_marginTop="-20dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="90dp"
+                        android:background="@color/colorPrimary"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Country\nCode :"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="15dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/contentTextColor"/>
+
+                    <TextView
+                        android:id="@+id/textcode"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="90dp"
+                        android:layout_marginTop="-20dp" />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="90dp"
+                        android:background="@color/colorPrimary"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Latitude :"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="15dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/contentTextColor"/>
+
+                    <TextView
+                        android:id="@+id/textlatitude"
+                        android:layout_width="250dp"
+                        android:layout_marginLeft="90dp"
+                        android:layout_marginTop="-20dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="90dp"
+                        android:background="@color/colorPrimary"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Longitude :"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/contentTextColor"/>
+
+                    <TextView
+                        android:id="@+id/textlongitude"
+                        android:layout_width="250dp"
+                        android:layout_marginLeft="90dp"
+                        android:layout_marginTop="-10dp"
+                        android:layout_height="wrap_content" />
+
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="90dp"
+                        android:background="@color/colorPrimary"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnadd"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_btn"
+                android:text="REFRESH LOCATION"
+                android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

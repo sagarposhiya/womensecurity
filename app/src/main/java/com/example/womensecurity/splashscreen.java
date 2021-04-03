@@ -26,6 +26,8 @@ import static androidx.core.app.ActivityCompat.requestPermissions;
 
 public class splashscreen extends AppCompatActivity {
 
+    Button btnGetOTP;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +35,14 @@ public class splashscreen extends AppCompatActivity {
         setContentView(R.layout.activity_slashscreen);
 
         final EditText inputMobile= findViewById(R.id.inputMobile);
-        final Button btnGetOTP= findViewById(R.id.btnGetOTP);
+         btnGetOTP= findViewById(R.id.btnGetOTP);
 
         final ProgressBar progressBar = findViewById(R.id.progressBar);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.RECORD_AUDIO},
                     1001);
-            return;
+           // return;
         }
 
         btnGetOTP.setOnClickListener(new View.OnClickListener() {

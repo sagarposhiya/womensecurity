@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
@@ -16,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.SacnnerActivity"></activity>
+        <activity android:name=".location" />
+        <activity android:name=".views.SacnnerActivity" />
         <activity android:name=".verifyotp" />
         <activity android:name=".splashscreen" />
         <activity android:name=".SecurityCall" />
@@ -31,6 +34,7 @@
         </activity>
         <activity android:name=".Login" />
         <activity android:name=".Dashboard" />
+        <activity android:name=".views.MainChat" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
