@@ -82,13 +82,15 @@ public class Dashboard extends AppCompatActivity
         llSiren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startListening();
+              //  startListening();
             }
         });
 
         siren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startListening();
+              //  Toast.makeText(Dashboard.this, "Clicked", Toast.LENGTH_SHORT).show();
                // mediaPlayer.start();
               //  startListening();
             }
