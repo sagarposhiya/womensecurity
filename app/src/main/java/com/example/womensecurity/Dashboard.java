@@ -7,10 +7,15 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +34,7 @@ import com.example.womensecurity.utils.AppUtils;
 import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.utils.GPSTracker;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Dashboard extends AppCompatActivity
@@ -38,6 +44,8 @@ public class Dashboard extends AppCompatActivity
     public ActionBarDrawerToggle actionBarDrawerToggle;
     private static final int CALL_PHONE = 101;
     Register register;
+    private SpeechRecognizer mSpeechRecognizer;
+    private Intent mSpeechRecognizerIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,16 +68,99 @@ public class Dashboard extends AppCompatActivity
 
         // play siren
         siren = (ImageView) findViewById(R.id.siren);
-        final MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.sirenplay);
+        LinearLayout llSiren = findViewById(R.id.llSiren);
+       // final MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.sirenplay);
+
+        llSiren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startListening();
+            }
+        });
 
         siren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer.start();
+               // mediaPlayer.start();
+              //  startListening();
             }
         });
 
         getLocation();
+    }
+
+    private void startListening() {
+
+        String speechLan = AppUtils.getStringPreference(this, Constants.SPEECH_CODE);
+        if (TextUtils.isEmpty(speechLan)) {
+            speechLan = "en-US";
+        }
+        mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speck Now");
+
+        SpeechRecognitionListener listener = new SpeechRecognitionListener();
+        mSpeechRecognizer.setRecognitionListener(listener);
+
+        //if (!mIslistening) {
+            mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
+      //  }
+
+    }
+
+    protected class SpeechRecognitionListener implements RecognitionListener {
+
+        @Override
+        public void onReadyForSpeech(Bundle params) {
+            Toast.makeText(Dashboard.this, "Listening", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onBeginningOfSpeech() {
+
+        }
+
+        @Override
+        public void onRmsChanged(float rmsdB) {
+
+        }
+
+        @Override
+        public void onBufferReceived(byte[] buffer) {
+
+        }
+
+        @Override
+        public void onEndOfSpeech() {
+
+        }
+
+        @Override
+        public void onError(int error) {
+            Log.e("ERROR",error + " ");
+        }
+
+        @Override
+        public void onResults(Bundle results) {
+            ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            String result = matches.get(0);
+            if (result.contains("help") || result.contains("save")){
+                final MediaPlayer mediaPlayer = MediaPlayer.create(Dashboard.this,R.raw.sirenplay);
+                mediaPlayer.start();
+            }
+        }
+
+        @Override
+        public void onPartialResults(Bundle partialResults) {
+
+        }
+
+        @Override
+        public void onEvent(int eventType, Bundle params) {
+
+        }
     }
 
     private void getLocation() {

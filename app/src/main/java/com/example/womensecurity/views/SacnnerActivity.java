@@ -157,6 +157,9 @@ public class SacnnerActivity extends AppCompatActivity {
             @Override
             protected Void doInBackground(Void... voids) {
 
+                DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
+                        .adharcardDao().deleteAdharCard();
+
                 //adding to database
                 DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
                         .adharcardDao()

@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.womensecurity.Dashboard"
     tools:ignore="HardcodedText">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -137,6 +138,7 @@
             android:layout_marginLeft="200dp">
 
             <LinearLayout
+                android:id="@+id/llSiren"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">

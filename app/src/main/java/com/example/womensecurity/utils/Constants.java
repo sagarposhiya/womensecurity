@@ -10,5 +10,6 @@ public class Constants {
     public static final String address = "address";
     public static final String latitude = "latitude";
     public static final String longitude = "longitude";
+    public static final String SPEECH_CODE = "SPEECH_CODE";
     public static final String mapUrl =  "http://maps.google.com/maps?q=loc:";  //"http://maps.google.com/maps?q=loc:" + lat + "," + lng + " (" + mTitle + ")";;
 }

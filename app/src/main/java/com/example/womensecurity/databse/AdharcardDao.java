@@ -24,4 +24,7 @@ public interface AdharcardDao {
 
     @Update
     void update(AdharCard adharCard);
+
+    @Query("DELETE FROM adharcard")
+    public void deleteAdharCard();
 }
