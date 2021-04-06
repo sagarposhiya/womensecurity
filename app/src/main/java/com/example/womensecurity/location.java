@@ -3,12 +3,15 @@ package com.example.womensecurity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.womensecurity.utils.AppUtils;
 import com.example.womensecurity.utils.Constants;
+import com.example.womensecurity.views.MainChat;
 
 public class location extends AppCompatActivity {
     TextView txtCountry, txtCode, txtLatitude, txtLongitude;
@@ -36,5 +39,10 @@ public class location extends AppCompatActivity {
         txtLongitude.setText(longitude);
         txtCode.setText(code);
 
+    }
+
+    public void onMap(View view){
+        Intent i= new Intent(location.this, GoogleMap.class);
+        startActivity(i);
     }
 }

@@ -82,7 +82,8 @@ public class Dashboard extends AppCompatActivity
         llSiren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  startListening();
+                startListening();
+                Toast.makeText(Dashboard.this, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -90,9 +91,9 @@ public class Dashboard extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 startListening();
-              //  Toast.makeText(Dashboard.this, "Clicked", Toast.LENGTH_SHORT).show();
-               // mediaPlayer.start();
-              //  startListening();
+//               Toast.makeText(Dashboard.this, "Clicked", Toast.LENGTH_SHORT).show();
+//                mediaPlayer.start();
+//                startListening();
             }
         });
 
@@ -347,7 +348,7 @@ public class Dashboard extends AppCompatActivity
         // Create an alert builder
         AlertDialog.Builder builder
                 = new AlertDialog.Builder(this);
-        builder.setTitle("Emergency Contact");
+        builder.setTitle("Emergency Message");
 
         // set the custom layout
         final View customLayout

@@ -68,5 +68,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.6.0'
     compile 'me.himanshusoni.chatmessageview:chat-message-view:1.0.7'
 
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+
 
 }

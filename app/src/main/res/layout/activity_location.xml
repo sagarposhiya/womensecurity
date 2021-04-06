@@ -177,6 +177,17 @@
                 android:text="REFRESH LOCATION"
                 android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/btnmap"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_btn"
+                android:text="GO TO MAP"
+                android:onClick="onMap"
+                android:textStyle="bold" />
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="40dp"
