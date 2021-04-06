@@ -1,40 +1,50 @@
-package com.example.womensecurity;
+ package com.example.womensecurity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
+import com.example.womensecurity.utils.AppUtils;
+import com.example.womensecurity.utils.Constants;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class GoogleMap extends FragmentActivity implements OnMapReadyCallback {
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+ public class GoogleMap extends FragmentActivity implements OnMapReadyCallback {
 
 
-    com.google.android.gms.maps.GoogleMap mapAPI;
-    SupportMapFragment mapFragment;
+   com.google.android.gms.maps.GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_map);
 
-        mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapAPI);
-
-        mapFragment.getMapAsync((OnMapReadyCallback) this);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     @Override
     public void onMapReady(com.google.android.gms.maps.GoogleMap googleMap) {
-        mapAPI = googleMap;
-        LatLng Surat = new LatLng(21.231599, 72.891680);
 
-        mapAPI.addMarker(new MarkerOptions().position(Surat).title("Surat"));
+//        String latitude = AppUtils.getStringPreference(this, Constants.latitude);
+//        String longitude = AppUtils.getStringPreference(this,Constants.latitude);
+//
+//
+//        NumberFormat formatter = new DecimalFormat("##.00");
 
-        mapAPI.moveCamera(CameraUpdateFactory.newLatLng(Surat));
+        mMap = googleMap;
+       // LatLng Surat = new LatLng(21.231599, 72.891680);
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Surat"));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }

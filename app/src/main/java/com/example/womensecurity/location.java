@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.womensecurity.utils.AppUtils;
 import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.views.MainChat;
+import com.example.womensecurity.views.MapsActivity;
 
 public class location extends AppCompatActivity {
     TextView txtCountry, txtCode, txtLatitude, txtLongitude;
@@ -42,7 +43,7 @@ public class location extends AppCompatActivity {
     }
 
     public void onMap(View view){
-        Intent i= new Intent(location.this, GoogleMap.class);
+        Intent i= new Intent(location.this, MapsActivity.class);
         startActivity(i);
     }
 }

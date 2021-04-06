@@ -5,6 +5,7 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,6 +27,7 @@ public class MainChat extends AppCompatActivity {
     FloatingActionButton btnsend;
     EditText editText;
     ImageView imageView;
+    WebView webView;
 
 //    private Bot bot;
 //        public static Chat chat;
@@ -39,6 +41,11 @@ public class MainChat extends AppCompatActivity {
         btnsend = findViewById(R.id.flotingbtn);
         editText = findViewById(R.id.edtTextmsg);
         imageView = findViewById(R.id.imgview);
+        webView = findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        //WebView webView = new WebView(this);
+        webView.loadUrl("https://web-chat.global.assistant.watson.cloud.ibm.com/preview.html?region=eu-gb&integrationID=21962f16-05b5-41c4-b40f-2e6d3cd22964&serviceInstanceID=4759fca9-63f5-4a73-b4e4-9e96007bb3fe");
+       // setContentView(webView);
 
         adapter= new ChatMessageAdapter(this,new ArrayList<ChatMessage>());
         Listview.setAdapter(adapter);
