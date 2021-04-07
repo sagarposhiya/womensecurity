@@ -29,7 +29,7 @@ public class location extends AppCompatActivity {
         txtLongitude=findViewById(R.id.textlongitude);
 
         String latitude = AppUtils.getStringPreference(this, Constants.latitude);
-        String longitude = AppUtils.getStringPreference(this,Constants.latitude);
+        String longitude = AppUtils.getStringPreference(this,Constants.longitude);
         String address = AppUtils.getStringPreference(this,Constants.address);
         String country = AppUtils.getStringPreference(this,Constants.country);
         String code = AppUtils.getStringPreference(this,Constants.code);

@@ -5,12 +5,17 @@ import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 
 import com.example.womensecurity.R;
+import com.example.womensecurity.utils.AppUtils;
+import com.example.womensecurity.utils.Constants;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -39,9 +44,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        String latitude = AppUtils.getStringPreference(this, Constants.latitude);
+        String longitude = AppUtils.getStringPreference(this,Constants.longitude);
+        String address = AppUtils.getStringPreference(this,Constants.address);
+        NumberFormat formatter = new DecimalFormat("##.00");
+
+//        latitude = formatter.format(latitude);
+//        longitude = formatter.format(longitude);
+
         // Add a marker in Sydney and move the camera
+        LatLng surat = new LatLng(Double.valueOf(latitude), Double.valueOf(longitude));
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.addMarker(new MarkerOptions().position(surat).title(address));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(surat));
     }
 }
