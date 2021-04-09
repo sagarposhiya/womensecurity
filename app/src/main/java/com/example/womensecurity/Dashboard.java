@@ -130,27 +130,28 @@ public class Dashboard extends AppCompatActivity
 
         @Override
         public void onBeginningOfSpeech() {
-
+            Toast.makeText(Dashboard.this, "onBeginningOfSpeech", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onRmsChanged(float rmsdB) {
-
+            Toast.makeText(Dashboard.this, "onRmsChanged", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onBufferReceived(byte[] buffer) {
-
+            Toast.makeText(Dashboard.this, "onBufferReceived", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onEndOfSpeech() {
-
+            Toast.makeText(Dashboard.this, "onEndOfSpeech", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onError(int error) {
             Log.e("ERROR",error + " ");
+            Toast.makeText(Dashboard.this, "error " + error, Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -423,7 +424,8 @@ public class Dashboard extends AppCompatActivity
                         .getAppDatabase()
                         .registerDao()
                         .getAll();
-                return taskList;
+                List<Register> taskList1 = taskList;
+                return taskList1;
             }
 
             @Override
