@@ -175,7 +175,8 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/round_btn"
                 android:text="REFRESH LOCATION"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="refresh"/>
 
             <Button
                 android:id="@+id/btnmap"

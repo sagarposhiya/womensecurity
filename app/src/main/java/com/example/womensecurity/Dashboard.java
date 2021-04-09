@@ -42,6 +42,7 @@ import com.example.womensecurity.views.MainChat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Dashboard extends AppCompatActivity
 {
@@ -102,22 +103,43 @@ public class Dashboard extends AppCompatActivity
 
     private void startListening() {
 
-        String speechLan = AppUtils.getStringPreference(this, Constants.SPEECH_CODE);
-        if (TextUtils.isEmpty(speechLan)) {
-            speechLan = "en-US";
-        }
-        mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
-        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speck Now");
+        if (SpeechRecognizer.isRecognitionAvailable(getApplicationContext())) {
 
-        SpeechRecognitionListener listener = new SpeechRecognitionListener();
-        mSpeechRecognizer.setRecognitionListener(listener);
+            final SpeechRecognizer mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
 
-        //if (!mIslistening) {
+            final Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                    RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+                    Locale.getDefault());
+
+            mSpeechRecognizer.setRecognitionListener(new SpeechRecognitionListener());
+
             mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
-      //  }
+        } else {
+            Toast.makeText(this, "App does not suppro", Toast.LENGTH_SHORT).show();
+        }
+
+
+//        String speechLan = AppUtils.getStringPreference(this, Constants.SPEECH_CODE);
+//        if (TextUtils.isEmpty(speechLan)) {
+//            speechLan = "en-US";
+//        }
+//        mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+//        mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+//        //mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+//       // mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.US);
+//      //  mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speck Now");
+//
+//        String languagePref = "en-US";//as you have downloaded US english model
+//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, languagePref);
+//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, languagePref);
+//        mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, languagePref);
+//
+//        SpeechRecognitionListener listener = new SpeechRecognitionListener();
+//        mSpeechRecognizer.setRecognitionListener(listener);
+//
+//            mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 
     }
 
@@ -130,28 +152,28 @@ public class Dashboard extends AppCompatActivity
 
         @Override
         public void onBeginningOfSpeech() {
-            Toast.makeText(Dashboard.this, "onBeginningOfSpeech", Toast.LENGTH_SHORT).show();
+         //   Toast.makeText(Dashboard.this, "onBeginningOfSpeech", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onRmsChanged(float rmsdB) {
-            Toast.makeText(Dashboard.this, "onRmsChanged", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(Dashboard.this, "onRmsChanged", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onBufferReceived(byte[] buffer) {
-            Toast.makeText(Dashboard.this, "onBufferReceived", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(Dashboard.this, "onBufferReceived", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onEndOfSpeech() {
-            Toast.makeText(Dashboard.this, "onEndOfSpeech", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(Dashboard.this, "onEndOfSpeech", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onError(int error) {
             Log.e("ERROR",error + " ");
-            Toast.makeText(Dashboard.this, "error " + error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(Dashboard.this, "speak something!! " + error, Toast.LENGTH_SHORT).show();
         }
 
         @Override

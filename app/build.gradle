@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.womensecurity"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -69,6 +69,8 @@ dependencies {
     compile 'me.himanshusoni.chatmessageview:chat-message-view:1.0.7'
 
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
+
+    implementation 'androidx.browser:browser:1.2.0'
 
 
 }
