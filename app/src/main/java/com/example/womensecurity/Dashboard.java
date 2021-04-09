@@ -204,24 +204,48 @@ public class Dashboard extends AppCompatActivity
         if (gpsTracker.getIsGPSTrackingEnabled())
         {
             String stringLatitude = String.valueOf(gpsTracker.latitude);
-            AppUtils.setStringPreference(this, Constants.latitude,stringLatitude);
+            if (stringLatitude.contains("0.0")){
+                AppUtils.setStringPreference(this, Constants.latitude, "21.1702");
+            } else {
+                AppUtils.setStringPreference(this, Constants.latitude, stringLatitude);
+            }
 
             String stringLongitude = String.valueOf(gpsTracker.longitude);
-            AppUtils.setStringPreference(this, Constants.longitude,stringLongitude);
+            if (stringLongitude.contains("0.0")){
+                AppUtils.setStringPreference(this, Constants.longitude, "72.8311");
+            } else {
+                AppUtils.setStringPreference(this, Constants.longitude, stringLongitude);
+            }
 
             String country = gpsTracker.getCountryName(this);
-            AppUtils.setStringPreference(this, Constants.country,country);
+            if (country == null){
+                AppUtils.setStringPreference(this, Constants.country, "India");
+            } else {
+                AppUtils.setStringPreference(this, Constants.country, country);
+            }
 
             String city = gpsTracker.getLocality(this);
-            AppUtils.setStringPreference(this, Constants.city,city);
+            if (city == null){
+                AppUtils.setStringPreference(this, Constants.city, "Surat");
+            } else {
+                AppUtils.setStringPreference(this, Constants.city, city);
+            }
 
             String postalCode = gpsTracker.getPostalCode(this);
 
             String code = gpsTracker.getCountryCode(this);
-            AppUtils.setStringPreference(this, Constants.code,code);
+            if (code == null){
+                AppUtils.setStringPreference(this, Constants.code, "IN");
+            } else {
+                AppUtils.setStringPreference(this, Constants.code, code);
+            }
 
             String addressLine = gpsTracker.getAddressLine(this);
-            AppUtils.setStringPreference(this, Constants.address,addressLine);
+            if (addressLine == null){
+                AppUtils.setStringPreference(this, Constants.address, "Mota varachcha,Surat");
+            } else {
+                AppUtils.setStringPreference(this, Constants.address, addressLine);
+            }
 
             Log.e("LOCATION","Latitude :- " + stringLatitude + "  Longitude :- " + stringLongitude + " \n Country :- " + country + " City :- " + city
                 + "  Address :- " + addressLine);

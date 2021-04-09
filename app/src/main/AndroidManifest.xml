@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.womensecurity">
 
-    <queries>
-        <package android:name="com.google.android.googlequicksearchbox"/>
-    </queries>
+<!--    <queries>-->
+<!--        <package android:name="com.google.android.googlequicksearchbox"/>-->
+<!--    </queries>-->
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -26,9 +26,9 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true"/>
+<!--    <uses-feature-->
+<!--        android:glEsVersion="0x00020000"-->
+<!--        android:required="true"/>-->
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
@@ -49,17 +49,18 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
 <!--        <meta-data-->
-<!--            android:name="com.google.android.maps.v2.API_KEY"-->
+<!--            android:name="com.google.android.geo.API_KEY"-->
 <!--            android:value="@string/google_maps_key" />-->
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_key" />
 
         <activity
             android:name=".views.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
+
         <activity android:name=".GoogleMap" />
         <activity android:name=".location" />
         <activity android:name=".views.SacnnerActivity" />
