@@ -30,7 +30,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.example.womensecurity.databse.DatabaseClient;
 import com.example.womensecurity.models.AdharCard;
@@ -39,12 +41,13 @@ import com.example.womensecurity.utils.AppUtils;
 import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.utils.GPSTracker;
 import com.example.womensecurity.views.MainChat;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class Dashboard extends AppCompatActivity
+public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     ImageView siren;
     public DrawerLayout drawerLayout;
@@ -60,7 +63,7 @@ public class Dashboard extends AppCompatActivity
         setContentView(R.layout.activity_dashboard);
         //if(!checkCallPermission()){return;}
 
-        checkCallPermission();;
+        checkCallPermission();
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
 
@@ -94,7 +97,7 @@ public class Dashboard extends AppCompatActivity
                 startListening();
 //               Toast.makeText(Dashboard.this, "Clicked", Toast.LENGTH_SHORT).show();
 //                mediaPlayer.start();
-//                startListening();
+//                  startListening();
             }
         });
 
@@ -117,7 +120,7 @@ public class Dashboard extends AppCompatActivity
 
             mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
         } else {
-            Toast.makeText(this, "App does not suppro", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "App does not support", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -142,6 +145,38 @@ public class Dashboard extends AppCompatActivity
 //            mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new DashboardFragment()).commit();
+                break;
+//            case R.id.nav_account:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new FavoritesFragment()).commit();
+//                break;
+//            case R.id.nav_story:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new SearchFragment()).commit();
+//                break;
+//            case R.id.nav_tips:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new SearchFragment()).commit();
+//                break;
+//            case R.id.nav_rating:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new SearchFragment()).commit();
+//                break;
+//            case R.id.nav_logout:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new SearchFragment()).commit();
+//                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+            return false;
+        }
 
     protected class SpeechRecognitionListener implements RecognitionListener {
 
@@ -485,5 +520,6 @@ public class Dashboard extends AppCompatActivity
 
         GetTasks gt = new GetTasks();
         gt.execute();
+        finish();
     }
 }

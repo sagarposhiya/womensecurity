@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.womensecurity.splashscreen"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".AdminForgotPass">
 
     <ImageView
         android:id="@+id/imageView"
@@ -19,9 +19,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="OTP Verification"
+        android:text="Forgot Password "
         android:textColor="@color/contentTextColor"
-        android:textSize="20sp"
+        android:textSize="30dp"
         android:textStyle="bold" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="8dp"
-        android:text="We will send you an one time password on \n mobile number"
+        android:text="No worries! Enter your Email and \n we will send you a reset"
         android:textSize="14dp"/>
 
     <androidx.cardview.widget.CardView
@@ -50,33 +50,36 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputMobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:hint="Mobile Number"
-                    android:inputType="number" />
+                android:id="@+id/inputMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:hint="Enter Email"
+                android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/btnGetOTP"
+        android:id="@+id/btnGetEmail"
         android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:background="@color/themeColor"
-        android:text="GET OTP"
+        android:text="SEND REQUEST"
         android:textStyle="bold"/>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="5dp"
-                android:layout_gravity="center"
-                android:visibility="gone"/>
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+</LinearLayout >

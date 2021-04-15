@@ -181,10 +181,10 @@ public class RegisterActivity extends AppCompatActivity implements Validator{
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                finish();
-                startActivity(new Intent(getApplicationContext(), Dashboard.class));
+                startActivity(new Intent(getApplicationContext(),Dashboard.class));
                 AppUtils.setBooleanPreference(RegisterActivity.this,Constants.isRegistered,true);
                 Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
 

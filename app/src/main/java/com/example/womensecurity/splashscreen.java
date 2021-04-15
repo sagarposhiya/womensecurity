@@ -55,7 +55,7 @@ public class splashscreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (inputMobile.getText().toString().trim().isEmpty()){
-                    Toast.makeText(splashscreen.this, "Enter Mobile", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(splashscreen.this, "Enter Mobile Number", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);

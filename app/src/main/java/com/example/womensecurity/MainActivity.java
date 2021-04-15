@@ -46,9 +46,8 @@ public class MainActivity extends AppCompatActivity {
                     boolean isLogin = AppUtils.getBooleanPreference(MainActivity.this, Constants.isLogin);
                     boolean isRegistered = AppUtils.getBooleanPreference(MainActivity.this, Constants.isRegistered);
                     if (!isLogin) {
-                        Intent i = new Intent(MainActivity.this, splashscreen.class);
+                        Intent i = new Intent(MainActivity.this,AdminUser.class);
                         startActivity(i);
-                        finish();
                     } else if (!isRegistered){
                         startActivity(new Intent(MainActivity.this,RegisterActivity.class));
                     } else {
@@ -59,5 +58,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         timer.start();
+
     }
 }
