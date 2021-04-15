@@ -29,6 +29,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     //define versions
     def support_version = "27.0.2"
     def room_version = "1.1.1"

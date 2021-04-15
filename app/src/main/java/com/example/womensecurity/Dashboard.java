@@ -40,6 +40,7 @@ import com.example.womensecurity.models.Register;
 import com.example.womensecurity.utils.AppUtils;
 import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.utils.GPSTracker;
+import com.example.womensecurity.views.HomeActivity;
 import com.example.womensecurity.views.MainChat;
 import com.google.android.material.navigation.NavigationView;
 
@@ -47,7 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class Dashboard extends AppCompatActivity
 {
     ImageView siren;
     public DrawerLayout drawerLayout;
@@ -56,6 +57,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     Register register;
     private SpeechRecognizer mSpeechRecognizer;
     private Intent mSpeechRecognizerIntent;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         // drawer and back button to close drawer
 
         drawerLayout = findViewById(R.id.my_drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
 
         // pass the Open and Close toggle for the drawer layout listener
@@ -102,6 +105,39 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         });
 
         getLocation();
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        startActivity(new Intent(Dashboard.this, HomeActivity.class));
+                        break;
+//            case R.id.nav_account:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new FavoritesFragment()).commit();
+//                break;
+//            case R.id.nav_story:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new SearchFragment()).commit();
+//                break;
+//            case R.id.nav_tips:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new SearchFragment()).commit();
+//                break;
+//            case R.id.nav_rating:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new SearchFragment()).commit();
+//                break;
+//            case R.id.nav_logout:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new SearchFragment()).commit();
+//                break;
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return false;
+            }
+        });
     }
 
     private void startListening() {
@@ -146,37 +182,37 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new DashboardFragment()).commit();
-                break;
-//            case R.id.nav_account:
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.nav_home:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new FavoritesFragment()).commit();
+//                        new DashboardFragment()).commit();
 //                break;
-//            case R.id.nav_story:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new SearchFragment()).commit();
-//                break;
-//            case R.id.nav_tips:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new SearchFragment()).commit();
-//                break;
-//            case R.id.nav_rating:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new SearchFragment()).commit();
-//                break;
-//            case R.id.nav_logout:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new SearchFragment()).commit();
-//                break;
-        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-            return false;
-        }
+////            case R.id.nav_account:
+////                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+////                        new FavoritesFragment()).commit();
+////                break;
+////            case R.id.nav_story:
+////                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+////                        new SearchFragment()).commit();
+////                break;
+////            case R.id.nav_tips:
+////                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+////                        new SearchFragment()).commit();
+////                break;
+////            case R.id.nav_rating:
+////                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+////                        new SearchFragment()).commit();
+////                break;
+////            case R.id.nav_logout:
+////                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+////                        new SearchFragment()).commit();
+////                break;
+//        }
+//        drawerLayout.closeDrawer(GravityCompat.START);
+//            return false;
+//        }
 
     protected class SpeechRecognitionListener implements RecognitionListener {
 
@@ -520,6 +556,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
         GetTasks gt = new GetTasks();
         gt.execute();
-        finish();
+
     }
 }

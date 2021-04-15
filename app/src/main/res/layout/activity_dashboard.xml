@@ -238,6 +238,7 @@
             android:layout_marginLeft="300dp"
             android:onClick="onChat"
             android:src="@drawable/chat_logo" />
+
     </LinearLayout>
 
     </ScrollView>
