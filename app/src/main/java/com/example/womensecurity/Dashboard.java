@@ -111,7 +111,7 @@ public class Dashboard extends AppCompatActivity
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        startActivity(new Intent(Dashboard.this, HomeActivity.class));
+                        startActivity(new Intent(Dashboard.this, Dashboard.class));
                         break;
 //            case R.id.nav_account:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
