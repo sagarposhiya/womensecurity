@@ -17,6 +17,16 @@
         android:title="Reports" />
 
     <item
+        android:id="@+id/nav_tips"
+        android:icon="@drawable/ic_tips"
+        android:title="Reports" />
+
+    <item
+        android:id="@+id/nav_faq"
+        android:icon="@drawable/ic_faq"
+        android:title="Reports" />
+
+    <item
         android:id="@+id/nav_logout"
         android:icon="@drawable/logout"
         android:title="Logout" />
