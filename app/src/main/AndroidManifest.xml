@@ -36,7 +36,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".views.HomeActivity"></activity>
-        <activity android:name=".AdminHome" />
+        <activity android:name=".AdminHome" android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".AdminForgotPass" />
         <activity android:name=".AdminRegister" />
         <activity android:name=".AdminLogin" />

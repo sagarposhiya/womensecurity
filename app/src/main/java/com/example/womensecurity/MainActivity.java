@@ -45,13 +45,18 @@ public class MainActivity extends AppCompatActivity {
                 finally {
                     boolean isLogin = AppUtils.getBooleanPreference(MainActivity.this, Constants.isLogin);
                     boolean isRegistered = AppUtils.getBooleanPreference(MainActivity.this, Constants.isRegistered);
+                    boolean isAdmin = AppUtils.getBooleanPreference(MainActivity.this, Constants.isAdmin);
                     if (!isLogin) {
                         Intent i = new Intent(MainActivity.this,AdminUser.class);
                         startActivity(i);
-                    } else if (!isRegistered){
+                    } else if (!isRegistered &&  !isAdmin){
                         startActivity(new Intent(MainActivity.this,RegisterActivity.class));
                     } else {
-                        startActivity(new Intent(MainActivity.this,Dashboard.class));
+                        if (isAdmin){
+                            startActivity(new Intent(MainActivity.this, AdminHome.class));
+                        } else {
+                            startActivity(new Intent(MainActivity.this, Dashboard.class));
+                        }
                       //  finish();
                     }
 
