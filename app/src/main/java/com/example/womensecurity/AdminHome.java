@@ -7,36 +7,42 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.womensecurity.views.HomeActivity;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class AdminHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AdminHome extends AppCompatActivity {
     private DrawerLayout drawer;
     public ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, R.string.nav_open, R.string.nav_close);
+        navigationView = findViewById(R.id.nav_view);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer,toolbar, R.string.nav_open, R.string.nav_close);
 
         drawer.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         // to make the Navigation drawer icon always appear on the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-}
+      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AdminDashboardFragment()).commit();
-                break;
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        startActivity(new Intent(AdminHome.this, HomeActivity.class));
+                        break;
 //            case R.id.nav_account:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
 //                        new FavoritesFragment()).commit();
@@ -57,8 +63,11 @@ public class AdminHome extends AppCompatActivity implements NavigationView.OnNav
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
 //                        new SearchFragment()).commit();
 //                break;
-        }
-        drawer.closeDrawer(GravityCompat.START);
-        return false;
-    }
+                }
+                drawer.closeDrawer(GravityCompat.START);
+                return false;
+            }
+        });
+}
+
 }

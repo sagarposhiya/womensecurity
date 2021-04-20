@@ -99,11 +99,11 @@
         android:id="@+id/btnadd"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:background="@drawable/round_btn"
         android:text="ADD"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <ProgressBar
         android:id="@+id/progressBar"
