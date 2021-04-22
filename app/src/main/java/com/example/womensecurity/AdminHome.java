@@ -41,12 +41,11 @@ public class AdminHome extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        startActivity(new Intent(AdminHome.this, HomeActivity.class));
+                        startActivity(new Intent(AdminHome.this, AdminHome.class));
                         break;
-//            case R.id.nav_account:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new FavoritesFragment()).commit();
-//                break;
+                    case R.id.nav_account:
+                        startActivity(new Intent(AdminHome.this, AdminProfile.class));
+                        break;
 //            case R.id.nav_story:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
 //                        new SearchFragment()).commit();

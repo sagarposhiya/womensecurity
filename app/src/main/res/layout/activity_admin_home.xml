@@ -8,10 +8,13 @@
     android:layout_height="match_parent"
     android:background="@color/whiteTextColor"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:openDrawer="start"
+    tools:ignore="HardcodedText"
+    tools:context=".AdminHome">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/whiteTextColor"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
@@ -22,11 +25,6 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-<!--        <com.google.android.material.tabs.TabLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/tabs"/>-->
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -40,6 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/whiteTextColor"
+        app:itemTextColor="@color/darkTextColor"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/admin_navigation_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -56,7 +56,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:hint="Enter Email"
-                android:inputType="number" />
+                android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

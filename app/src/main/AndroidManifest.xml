@@ -15,6 +15,9 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <permission
         android:name="com.example.womensecurity.permission.MAPS_RECEIVE"
@@ -35,8 +38,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.HomeActivity"></activity>
-        <activity android:name=".AdminHome" android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".AdminProfile"></activity>
+        <activity android:name=".views.HomeActivity" />
+        <activity
+            android:name=".AdminHome"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".AdminForgotPass" />
         <activity android:name=".AdminRegister" />
         <activity android:name=".AdminLogin" />
@@ -84,6 +90,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- uCrop cropping activity -->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- cache directory file provider paths -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <uses-library
             android:name="org.apache.http.legacy"
