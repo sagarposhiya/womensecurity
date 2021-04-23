@@ -38,7 +38,7 @@ public class AdminHome extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected( MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
                         startActivity(new Intent(AdminHome.this, AdminHome.class));

@@ -54,7 +54,7 @@ public class AdminRegister extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(email, password)
                        .addOnCompleteListener(AdminRegister.this, new OnCompleteListener<AuthResult>() {
                                 @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                public void onComplete( Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -64,7 +64,7 @@ public class AdminRegister extends AppCompatActivity {
                                         user.updateProfile(profileUpdates)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                    public void onComplete( Task<Void> task) {
                                                         if (task.isSuccessful()) {
                                                             Log.d(TAG, "User profile updated.");
                                                         }

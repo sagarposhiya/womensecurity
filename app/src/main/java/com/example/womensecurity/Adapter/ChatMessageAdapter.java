@@ -20,7 +20,7 @@ public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
     private static final int MY_MESSAGE=0;
     private static final int BOT_MESSAGE=1;
 
-    public ChatMessageAdapter(@NonNull Context context, List<ChatMessage> data) {
+    public ChatMessageAdapter( Context context, List<ChatMessage> data) {
         super(context, R.layout.activity_user_query,data);
     }
 

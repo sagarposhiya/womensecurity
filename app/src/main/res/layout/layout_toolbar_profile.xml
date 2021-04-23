@@ -28,8 +28,7 @@
             android:layout_alignBottom="@id/img_profile"
             android:layout_alignParentRight="true"
             android:src="@drawable/plus"
-            app:civ_shadow="true"
-            app:civ_shadow_radius="1" />
+            app:civ_shadow="true"/>
     </RelativeLayout>
 
     <TextView
@@ -127,7 +126,6 @@
                         android:hint="Email"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
-
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
