@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onComplete( Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()){
                     Intent intent=new Intent(Login.this, Dashboard.class);

@@ -63,7 +63,7 @@ public class verifyotp extends AppCompatActivity {
     private void signIn(PhoneAuthCredential credential) {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onComplete( Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     AppUtils.setStringPreference(verifyotp.this, Constants.userId,task.getResult().getUser().getUid());
                     AppUtils.setBooleanPreference(verifyotp.this,Constants.isLogin,true);

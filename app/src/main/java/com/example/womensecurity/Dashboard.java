@@ -108,7 +108,7 @@ public class Dashboard extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected( MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
                         startActivity(new Intent(Dashboard.this, Dashboard.class));
@@ -183,7 +183,7 @@ public class Dashboard extends AppCompatActivity
     }
 
 //    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//    public boolean onNavigationItemSelected("" MenuItem item) {
 //        switch (item.getItemId()) {
 //            case R.id.nav_home:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -327,7 +327,7 @@ public class Dashboard extends AppCompatActivity
         }
     }
 
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected( MenuItem item) {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;

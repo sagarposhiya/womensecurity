@@ -69,20 +69,20 @@ public class splashscreen extends AppCompatActivity {
                                 .setActivity(splashscreen.this)                 // Activity (for callback binding)
                                 .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                                     @Override
-                                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                    public void onVerificationCompleted( PhoneAuthCredential phoneAuthCredential) {
                                         progressBar.setVisibility(View.GONE);
                                         btnGetOTP.setVisibility(View.VISIBLE);
                                     }
 
                                     @Override
-                                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                                    public void onVerificationFailed( FirebaseException e) {
                                         progressBar.setVisibility(View.GONE);
                                         btnGetOTP.setVisibility(View.VISIBLE);
                                         Toast.makeText(splashscreen.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override
-                                    public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                    public void onCodeSent( String verificationId,  PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                         super.onCodeSent(verificationId, forceResendingToken);
                                         progressBar.setVisibility(View.GONE);
                                         btnGetOTP.setVisibility(View.VISIBLE);
@@ -103,19 +103,19 @@ public class splashscreen extends AppCompatActivity {
 //                        splashscreen.this,
 //                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
 //
-//                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential){
+//                            public void onVerificationCompleted("" PhoneAuthCredential phoneAuthCredential){
 //                                progressBar.setVisibility(View.GONE);
 //                                btnGetOTP.setVisibility(View.VISIBLE);
 //                            }
 //
-//                            public void onVerificationFailed(@NonNull FirebaseException e){
+//                            public void onVerificationFailed("" FirebaseException e){
 //                                progressBar.setVisibility(View.GONE);
 //                                btnGetOTP.setVisibility(View.VISIBLE);
 //                                Toast.makeText(splashscreen.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 //                            }
 //
 //                            @Override
-//                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+//                            public void onCodeSent("" String verificationId, "" PhoneAuthProvider.ForceResendingToken forceResendingToken) {
 //                                progressBar.setVisibility(View.GONE);
 //                                btnGetOTP.setVisibility(View.VISIBLE);
 //                                Intent intent=new Intent(splashscreen.this, verifyotp.class);
