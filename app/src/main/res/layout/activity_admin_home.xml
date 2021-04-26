@@ -32,6 +32,8 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="4dp" />
 
+        <include layout="@layout/content_admin_home"/>
+
     </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

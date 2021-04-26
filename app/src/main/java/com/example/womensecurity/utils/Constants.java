@@ -16,4 +16,6 @@ public class Constants {
     public static final String ADMIN_NUMBER = "ADMIN_NUMBER";
     public static final String isAdmin = "isAdmin";
     public static final String mapUrl =  "http://maps.google.com/maps?q=loc:";  //"http://maps.google.com/maps?q=loc:" + lat + "," + lng + " (" + mTitle + ")";;
+    public static final String REGISTERED = "REGISTERED";
+    public static final String USERS = "USERS";
 }

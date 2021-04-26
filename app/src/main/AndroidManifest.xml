@@ -38,7 +38,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AdminProfile"></activity>
+        <activity android:name=".views.AdminMessageList"></activity>
+        <activity android:name=".views.AdminCallList" />
+        <activity android:name=".views.AdminUserList" />
+        <activity android:name=".AdminProfile" />
         <activity android:name=".views.HomeActivity" />
         <activity
             android:name=".AdminHome"
@@ -89,14 +92,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- uCrop cropping activity -->
+        </activity> <!-- uCrop cropping activity -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait" />
-
-        <!-- cache directory file provider paths -->
+            android:screenOrientation="portrait" /> <!-- cache directory file provider paths -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
