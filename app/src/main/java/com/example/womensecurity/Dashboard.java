@@ -37,12 +37,15 @@ import androidx.fragment.app.Fragment;
 import com.example.womensecurity.databse.DatabaseClient;
 import com.example.womensecurity.models.AdharCard;
 import com.example.womensecurity.models.Register;
+import com.example.womensecurity.models.User;
 import com.example.womensecurity.utils.AppUtils;
 import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.utils.GPSTracker;
 import com.example.womensecurity.views.HomeActivity;
 import com.example.womensecurity.views.MainChat;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,12 +61,15 @@ public class Dashboard extends AppCompatActivity
     private SpeechRecognizer mSpeechRecognizer;
     private Intent mSpeechRecognizerIntent;
     NavigationView navigationView;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         //if(!checkCallPermission()){return;}
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        getUser();
 
         checkCallPermission();
         // drawer layout instance to toggle the menu icon to open
@@ -136,6 +142,45 @@ public class Dashboard extends AppCompatActivity
                 return false;
             }
         });
+    }
+
+    private void getUser() {
+
+        class GetTasks extends AsyncTask<Void, Void, List<AdharCard>> {
+
+            @Override
+            protected List<AdharCard> doInBackground(Void... voids) {
+                List<AdharCard> taskList = DatabaseClient
+                        .getInstance(getApplicationContext())
+                        .getAppDatabase()
+                        .adharcardDao()
+                        .getAll();
+                return taskList;
+            }
+
+            @Override
+            protected void onPostExecute(List<AdharCard> tasks) {
+                super.onPostExecute(tasks);
+                if (tasks.size() > 0){
+                    AdharCard adharCard = tasks.get(0);
+                    addUser(adharCard);
+
+                }
+            }
+        }
+
+        GetTasks gt = new GetTasks();
+        gt.execute();
+    }
+
+    private void addUser(AdharCard adharCard) {
+        String userId = AppUtils.getStringPreference(Dashboard.this, Constants.userId);
+
+        User user = new User();
+        user.setUserId(userId);
+        user.setUserName(adharCard.getName());
+
+        mDatabase.child(Constants.USERS).child(userId).setValue(user);
     }
 
     private void startListening() {

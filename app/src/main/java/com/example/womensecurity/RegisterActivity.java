@@ -142,7 +142,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator{
                    // register.setPassword(password);
 
                     String userId = AppUtils.getStringPreference(RegisterActivity.this, Constants.userId);
-                    mDatabase.child("users").child(userId).setValue(register);
+                    mDatabase.child(Constants.REGISTERED).child(userId).setValue(register);
 
                     saveUser(register);
 
