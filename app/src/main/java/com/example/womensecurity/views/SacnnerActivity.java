@@ -132,9 +132,10 @@ public class SacnnerActivity extends AppCompatActivity {
                     adharCard.setMobile(mobile);
                     adharCard.setSignature(signature);
 
-                    saveTask(adharCard);
+
                     if (gender.equalsIgnoreCase("F")){
                         Toast.makeText(this, "You are able to login", Toast.LENGTH_SHORT).show();
+                        saveTask(adharCard);
                         //startActivity(new Intent(MainActivity.this, Dashboard.class));
                     } else {
                         Toast.makeText(this, "You are not able to login", Toast.LENGTH_SHORT).show();
