@@ -40,6 +40,9 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".AdminProfile"></activity>
         <activity android:name=".User_Ratting"></activity>
+        <activity android:name=".views.AdminMessageList"></activity>
+        <activity android:name=".views.AdminCallList"></activity>
+        <activity android:name=".views.AdminUserList"></activity>
         <activity android:name=".views.HomeActivity" />
         <activity
             android:name=".AdminHome"
