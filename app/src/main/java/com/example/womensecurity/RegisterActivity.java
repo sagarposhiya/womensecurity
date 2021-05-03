@@ -247,7 +247,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator{
 
     private boolean CheckAllFields() {
         if (inputFirst.length() == 0) {
-            inputFirst.setError("This field is required");
+            inputFirst.setError("Enter only character");
             return false;
         }
         if (inputLast.length() == 0) {
@@ -260,11 +260,11 @@ public class RegisterActivity extends AppCompatActivity implements Validator{
             return false;
         }
         if (inputmobile.length() == 0) {
-            inputmobile.setError("Mobile Number is Required");
+            inputmobile.setError("Enter only numbers");
             return false;
         }
-        if (inputmobile.length() == 0) {
-            inputmobile.setError("Email is Required");
+        if (inputemail.length() == 0) {
+            inputemail.setError("Email is Required");
             return false;
         }
         if (inputeme1.length() == 0) {
@@ -291,19 +291,19 @@ public class RegisterActivity extends AppCompatActivity implements Validator{
             inputpass.setError("Password must be minimum 8 characters");
             return false;
         }
-        if (inputmobile.length() < 10) {
+        else if (inputmobile.length() < 10) {
             inputmobile.setError("mobile number can not be more than 10 digit.");
             return false;
         }
-        if (inputeme1.length() < 10) {
+        else if (inputeme1.length() < 10) {
             inputeme1.setError("mobile number can not be more than 10 digit.");
             return false;
         }
-        if (inputeme2.length() < 10) {
+        else if (inputeme2.length() < 10) {
             inputeme2.setError("mobile number can not be more than 10 digit.");
             return false;
         }
-        if (inputeme3.length() < 10) {
+        else if (inputeme3.length() < 10) {
             inputeme3.setError("mobile number can not be more than 10 digit.");
             return false;
         }

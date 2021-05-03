@@ -121,10 +121,9 @@ public class Dashboard extends AppCompatActivity {
                     case R.id.nav_home:
                         startActivity(new Intent(Dashboard.this, Dashboard.class));
                         break;
-//            case R.id.nav_account:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new FavoritesFragment()).commit();
-//                break;
+                    case R.id.nav_account:
+                        startActivity(new Intent(Dashboard.this, User_Profile.class));
+                        break;
 //            case R.id.nav_story:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
 //                        new SearchFragment()).commit();
@@ -133,10 +132,9 @@ public class Dashboard extends AppCompatActivity {
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
 //                        new SearchFragment()).commit();
 //                break;
-//            case R.id.nav_rating:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new SearchFragment()).commit();
-//                break;
+                    case R.id.nav_rating:
+                        startActivity(new Intent(Dashboard.this, User_Ratting.class));
+                        break;
 //            case R.id.nav_logout:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
 //                        new SearchFragment()).commit();
