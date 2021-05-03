@@ -32,7 +32,7 @@
     android:layout_centerVertical="true"
     app:cardCornerRadius="20dp">
 
-    <com.hsalf.smileyrating.SmileyRating
+    <com.hsalf.smilerating.SmileRating
         android:id="@+id/smile_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
