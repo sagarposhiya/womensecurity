@@ -36,6 +36,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.womensecurity.databse.DatabaseClient;
 import com.example.womensecurity.models.AdharCard;
+import com.example.womensecurity.models.Call;
+import com.example.womensecurity.models.Message;
 import com.example.womensecurity.models.Register;
 import com.example.womensecurity.models.User;
 import com.example.womensecurity.utils.AppUtils;
@@ -48,11 +50,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Dashboard extends AppCompatActivity
-{
+public class Dashboard extends AppCompatActivity {
     ImageView siren;
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
@@ -90,7 +92,7 @@ public class Dashboard extends AppCompatActivity
         // play siren
         siren = (ImageView) findViewById(R.id.siren);
         LinearLayout llSiren = findViewById(R.id.llSiren);
-       // final MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.sirenplay);
+        // final MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.sirenplay);
 
         llSiren.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +116,7 @@ public class Dashboard extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected( MenuItem item) {
+            public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
                         startActivity(new Intent(Dashboard.this, Dashboard.class));
@@ -163,8 +165,9 @@ public class Dashboard extends AppCompatActivity
             @Override
             protected void onPostExecute(List<AdharCard> tasks) {
                 super.onPostExecute(tasks);
-                if (tasks.size() > 0){
+                if (tasks.size() > 0) {
                     AdharCard adharCard = tasks.get(0);
+                    AppUtils.setStringPreference(Dashboard.this, Constants.UserName, adharCard.getName());
                     addUser(adharCard);
 
                 }
@@ -268,17 +271,17 @@ public class Dashboard extends AppCompatActivity
 
         @Override
         public void onBeginningOfSpeech() {
-         //   Toast.makeText(Dashboard.this, "onBeginningOfSpeech", Toast.LENGTH_SHORT).show();
+            //   Toast.makeText(Dashboard.this, "onBeginningOfSpeech", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onRmsChanged(float rmsdB) {
-          //  Toast.makeText(Dashboard.this, "onRmsChanged", Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(Dashboard.this, "onRmsChanged", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onBufferReceived(byte[] buffer) {
-          //  Toast.makeText(Dashboard.this, "onBufferReceived", Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(Dashboard.this, "onBufferReceived", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -288,7 +291,7 @@ public class Dashboard extends AppCompatActivity
 
         @Override
         public void onError(int error) {
-            Log.e("ERROR",error + " ");
+            Log.e("ERROR", error + " ");
             Toast.makeText(Dashboard.this, "speak something!! " + error, Toast.LENGTH_SHORT).show();
         }
 
@@ -296,8 +299,8 @@ public class Dashboard extends AppCompatActivity
         public void onResults(Bundle results) {
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             String result = matches.get(0);
-            if (result.contains("help") || result.contains("save")){
-                final MediaPlayer mediaPlayer = MediaPlayer.create(Dashboard.this,R.raw.sirenplay);
+            if (result.contains("help") || result.contains("save")) {
+                final MediaPlayer mediaPlayer = MediaPlayer.create(Dashboard.this, R.raw.sirenplay);
                 mediaPlayer.start();
             }
         }
@@ -315,33 +318,32 @@ public class Dashboard extends AppCompatActivity
 
     private void getLocation() {
 
-        GPSTracker gpsTracker = new GPSTracker(this,this);
+        GPSTracker gpsTracker = new GPSTracker(this, this);
 
-        if (gpsTracker.getIsGPSTrackingEnabled())
-        {
+        if (gpsTracker.getIsGPSTrackingEnabled()) {
             String stringLatitude = String.valueOf(gpsTracker.latitude);
-            if (stringLatitude.contains("0.0")){
+            if (stringLatitude.contains("0.0")) {
                 AppUtils.setStringPreference(this, Constants.latitude, "21.1702");
             } else {
                 AppUtils.setStringPreference(this, Constants.latitude, stringLatitude);
             }
 
             String stringLongitude = String.valueOf(gpsTracker.longitude);
-            if (stringLongitude.contains("0.0")){
+            if (stringLongitude.contains("0.0")) {
                 AppUtils.setStringPreference(this, Constants.longitude, "72.8311");
             } else {
                 AppUtils.setStringPreference(this, Constants.longitude, stringLongitude);
             }
 
             String country = gpsTracker.getCountryName(this);
-            if (country == null){
+            if (country == null) {
                 AppUtils.setStringPreference(this, Constants.country, "India");
             } else {
                 AppUtils.setStringPreference(this, Constants.country, country);
             }
 
             String city = gpsTracker.getLocality(this);
-            if (city == null){
+            if (city == null) {
                 AppUtils.setStringPreference(this, Constants.city, "Surat");
             } else {
                 AppUtils.setStringPreference(this, Constants.city, city);
@@ -350,51 +352,51 @@ public class Dashboard extends AppCompatActivity
             String postalCode = gpsTracker.getPostalCode(this);
 
             String code = gpsTracker.getCountryCode(this);
-            if (code == null){
+            if (code == null) {
                 AppUtils.setStringPreference(this, Constants.code, "IN");
             } else {
                 AppUtils.setStringPreference(this, Constants.code, code);
             }
 
             String addressLine = gpsTracker.getAddressLine(this);
-            if (addressLine == null){
+            if (addressLine == null) {
                 AppUtils.setStringPreference(this, Constants.address, "Mota varachcha,Surat");
             } else {
                 AppUtils.setStringPreference(this, Constants.address, addressLine);
             }
 
-            Log.e("LOCATION","Latitude :- " + stringLatitude + "  Longitude :- " + stringLongitude + " \n Country :- " + country + " City :- " + city
-                + "  Address :- " + addressLine);
-        }
-        else
-        {
+            Log.e("LOCATION", "Latitude :- " + stringLatitude + "  Longitude :- " + stringLongitude + " \n Country :- " + country + " City :- " + city
+                    + "  Address :- " + addressLine);
+        } else {
             gpsTracker.showSettingsAlert();
         }
     }
 
-    public boolean onOptionsItemSelected( MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     //Runtime permission
-    public boolean checkCallPermission (){
+    public boolean checkCallPermission() {
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE)
                 != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS)
-                != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE,Manifest.permission.SEND_SMS}, CALL_PHONE);
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.SEND_SMS}, CALL_PHONE);
             return false;
         }
         return true;
     }
-    public void onSecurityCall(View view){
-        Intent in=new Intent(Dashboard.this, SecurityCall.class);
+
+    public void onSecurityCall(View view) {
+        Intent in = new Intent(Dashboard.this, SecurityCall.class);
         startActivity(in);
     }
-    public void onemergencycall(View view)
-    {
+
+    public void onemergencycall(View view) {
         // Create an alert builder
         AlertDialog.Builder builder
                 = new AlertDialog.Builder(this);
@@ -431,13 +433,14 @@ public class Dashboard extends AppCompatActivity
                 String numberOne = txtOne.getText().toString();
                 // Call
                 Intent callIntent1 = new Intent(Intent.ACTION_CALL);
-                callIntent1.setData(Uri.parse("tel:"+numberOne));
+                callIntent1.setData(Uri.parse("tel:" + numberOne));
 
                 if (ActivityCompat.checkSelfPermission(Dashboard.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
                 startActivity(callIntent1);
+                addEmegencyCall(numberOne);
             }
         });
 
@@ -447,14 +450,15 @@ public class Dashboard extends AppCompatActivity
 
                 String numberTwo = txtTwo.getText().toString();
 
-                Intent callIntent2= new Intent(Intent.ACTION_CALL);
-                callIntent2.setData(Uri.parse("tel:"+numberTwo));
+                Intent callIntent2 = new Intent(Intent.ACTION_CALL);
+                callIntent2.setData(Uri.parse("tel:" + numberTwo));
 
                 if (ActivityCompat.checkSelfPermission(Dashboard.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
                 startActivity(callIntent2);
+                addEmegencyCall(numberTwo);
             }
         });
 
@@ -463,30 +467,54 @@ public class Dashboard extends AppCompatActivity
             public void onClick(View view) {
                 String numberThree = txtThree.getText().toString();
 
-                Intent callIntent3= new Intent(Intent.ACTION_CALL);
-                callIntent3.setData(Uri.parse("tel:"+numberThree));
+                Intent callIntent3 = new Intent(Intent.ACTION_CALL);
+                callIntent3.setData(Uri.parse("tel:" + numberThree));
 
                 if (ActivityCompat.checkSelfPermission(Dashboard.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
                 startActivity(callIntent3);
+                addEmegencyCall(numberThree);
             }
         });
 
         dialog.show();
     }
-    public void onlocation(View view){
-            Intent i=new Intent(Dashboard.this,location.class);
-            startActivity(i);
+
+    private void addEmegencyCall(String numberOne) {
+
+
+        String userId = AppUtils.getStringPreference(Dashboard.this, Constants.userId);
+        String id = AppUtils.getStringPreference(Dashboard.this, Constants.CallCount);
+        if (id == ""){
+            id = "0";
+        } else {
+            int temp = Integer.valueOf(id);
+            temp = temp + 1;
+            id = String.valueOf(temp);
+        }
+        AppUtils.setStringPreference(Dashboard.this,Constants.CallCount,id);
+
+        Call call = new Call();
+        call.setToCall(numberOne);
+        call.setCallTime(String.valueOf(new Date().getTime()));
+
+        mDatabase.child(Constants.USERS).child(userId).child(Constants.Calls).child(id).setValue(call);
+
     }
 
-    public void onChat(View view){
-        Intent i= new Intent(Dashboard.this, MainChat.class);
+    public void onlocation(View view) {
+        Intent i = new Intent(Dashboard.this, location.class);
         startActivity(i);
     }
 
-    public void onRecord(View View){
+    public void onChat(View view) {
+        Intent i = new Intent(Dashboard.this, MainChat.class);
+        startActivity(i);
+    }
+
+    public void onRecord(View View) {
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 100);
         startActivityForResult(intent, 1);
@@ -506,7 +534,7 @@ public class Dashboard extends AppCompatActivity
         }
     }
 
-    public void onEmergencyMessage(View view){
+    public void onEmergencyMessage(View view) {
 
         // Create an alert builder
         AlertDialog.Builder builder
@@ -542,7 +570,8 @@ public class Dashboard extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 String numberOne = txtOne.getText().toString();
-                AppUtils.sendSMS(numberOne,AppUtils.getMessageFormate(Dashboard.this));
+                AppUtils.sendSMS(numberOne, AppUtils.getMessageFormate(Dashboard.this));
+                addMessage(numberOne, AppUtils.getMessageFormate(Dashboard.this));
             }
         });
 
@@ -552,7 +581,8 @@ public class Dashboard extends AppCompatActivity
 
                 String numberTwo = txtTwo.getText().toString();
 
-                AppUtils.sendSMS(numberTwo,AppUtils.getMessageFormate(Dashboard.this));
+                AppUtils.sendSMS(numberTwo, AppUtils.getMessageFormate(Dashboard.this));
+                addMessage(numberTwo, AppUtils.getMessageFormate(Dashboard.this));
             }
         });
 
@@ -560,16 +590,48 @@ public class Dashboard extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 String numberThree = txtThree.getText().toString();
-                AppUtils.sendSMS(numberThree,AppUtils.getMessageFormate(Dashboard.this));
+                AppUtils.sendSMS(numberThree, AppUtils.getMessageFormate(Dashboard.this));
+                addMessage(numberThree, AppUtils.getMessageFormate(Dashboard.this));
             }
         });
 
         dialog.show();
     }
+
+    private void addMessage(String numberOne, String messageFormate) {
+
+        String userId = AppUtils.getStringPreference(Dashboard.this, Constants.userId);
+        String id = AppUtils.getStringPreference(Dashboard.this, Constants.MessageCount);
+        if (id == ""){
+            id = "0";
+        } else {
+            int temp = Integer.valueOf(id);
+            temp = temp + 1;
+            id = String.valueOf(temp);
+        }
+        AppUtils.setStringPreference(Dashboard.this,Constants.MessageCount,id);
+
+//        ArrayList<Message> messages = new ArrayList<>();
+//        for (int i = 0; i < 5 ; i++) {
+
+            Message message = new Message();
+            message.setToMsg(numberOne);
+            message.setMsgTime(String.valueOf(new Date().getTime()));
+            message.setMessage(messageFormate);
+//            messages.add(message);
+//        }
+
+        mDatabase.child(Constants.USERS).child(userId).child(Constants.Messages).child(id).setValue(message);
+//
+//        User user = new User();
+//        user.setMessages(messages);
+
+//        mDatabase.child(Constants.USERS).child(userId).setValue(user);
+    }
+
     // Do something with the data
     // coming from the AlertDialog
-    private void sendDialogDataToActivity(String data)
-    {
+    private void sendDialogDataToActivity(String data) {
         Toast.makeText(this,
                 data,
                 Toast.LENGTH_SHORT)
@@ -593,7 +655,7 @@ public class Dashboard extends AppCompatActivity
             @Override
             protected void onPostExecute(List<Register> tasks) {
                 super.onPostExecute(tasks);
-                if (tasks.size() > 0){
+                if (tasks.size() > 0) {
                     register = tasks.get(0);
                 }
             }

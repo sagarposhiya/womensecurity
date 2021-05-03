@@ -37,6 +37,9 @@ public class Register {
     @ColumnInfo(name = "date")
     String date;
 
+    @ColumnInfo(name = "time")
+    String time;
+
 //    @ColumnInfo(name = "password")
 //    String password;
 
@@ -59,7 +62,11 @@ public class Register {
     public void setDate(String date) {
         this.date = date;
     }
-//    public void setPassword(String password) { this.password = password; }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+    //    public void setPassword(String password) { this.password = password; }
 
     public Register(){
         firstName= "";
@@ -92,5 +99,9 @@ public class Register {
     public String getEmer3() { return emer3; }
     public String getDate() {
         return date;
+    }
+
+    public String getTime() {
+        return time;
     }
 }

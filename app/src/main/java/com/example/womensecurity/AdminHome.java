@@ -12,12 +12,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.womensecurity.models.Register;
+import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.views.AdminCallList;
 import com.example.womensecurity.views.AdminMessageList;
 import com.example.womensecurity.views.AdminUserList;
 import com.example.womensecurity.views.HomeActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 
 public class AdminHome extends AppCompatActivity {
@@ -25,13 +35,18 @@ public class AdminHome extends AppCompatActivity {
     public ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     NavigationView navigationView;
+    private DatabaseReference mDatabase;
     CardView cardWoman,cardCall,cardMessage;
+    ArrayList<Register> registers = new ArrayList<>();
+    TextView txtTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        txtTotal = findViewById(R.id.txtTotal);
+        getData();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
@@ -45,6 +60,7 @@ public class AdminHome extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         // to make the Navigation drawer icon always appear on the action bar
         //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -100,6 +116,25 @@ public class AdminHome extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getData() {
+        mDatabase.child(Constants.REGISTERED).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+
+                }
+                else {
+                    for (DataSnapshot snapshot : task.getResult().getChildren()){
+                        Register register = snapshot.getValue(Register.class);
+                        registers.add(register);
+                    }
+                    txtTotal.setText(registers.size() + "");
+
+                }
+            }
+        });
     }
 
 }

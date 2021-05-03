@@ -18,4 +18,9 @@ public class Constants {
     public static final String mapUrl =  "http://maps.google.com/maps?q=loc:";  //"http://maps.google.com/maps?q=loc:" + lat + "," + lng + " (" + mTitle + ")";;
     public static final String REGISTERED = "REGISTERED";
     public static final String USERS = "USERS";
+    public static final String Calls = "calls";
+    public static final String Messages = "messages";
+    public static final String UserName = "UserName";
+    public static final String CallCount = "CallCount";
+    public static final String MessageCount = "MessageCount";
 }

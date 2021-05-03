@@ -45,6 +45,7 @@ import com.mobsandgeeks.saripaar.annotation.Pattern;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -139,6 +140,7 @@ public class RegisterActivity extends AppCompatActivity implements Validator{
                     register.setFirstName(firstname);
                     register.setLastName(lastname);
                     register.setMobile(mobileno);
+                    register.setTime(String.valueOf(new Date().getTime()));
                    // register.setPassword(password);
 
                     String userId = AppUtils.getStringPreference(RegisterActivity.this, Constants.userId);
