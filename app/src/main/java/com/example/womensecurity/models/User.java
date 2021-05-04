@@ -10,6 +10,7 @@ public class User {
     ArrayList<Call> calls;
     ArrayList<Message> messages;
     ArrayList<Siren> sirens;
+    ArrayList<Ratting> ratting = new ArrayList<>();
 
     public String getUserId() {
         return userId;
@@ -49,5 +50,13 @@ public class User {
 
     public void setMessages(ArrayList<Message> messages) {
         this.messages = messages;
+    }
+
+    public void setRatting(ArrayList<Ratting> ratting) {
+        this.ratting = ratting;
+    }
+
+    public ArrayList<Ratting> getRatting() {
+        return ratting;
     }
 }

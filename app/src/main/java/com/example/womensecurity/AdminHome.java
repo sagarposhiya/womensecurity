@@ -18,6 +18,7 @@ import com.example.womensecurity.models.Register;
 import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.views.AdminCallList;
 import com.example.womensecurity.views.AdminMessageList;
+import com.example.womensecurity.views.AdminRattingList;
 import com.example.womensecurity.views.AdminUserList;
 import com.example.womensecurity.views.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,7 +37,7 @@ public class AdminHome extends AppCompatActivity {
     Toolbar toolbar;
     NavigationView navigationView;
     private DatabaseReference mDatabase;
-    CardView cardWoman,cardCall,cardMessage;
+    CardView cardWoman,cardCall,cardMessage,cardRatting;
     ArrayList<Register> registers = new ArrayList<>();
     TextView txtTotal;
 
@@ -53,6 +54,7 @@ public class AdminHome extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_view);
         cardWoman = findViewById(R.id.cardWoman);
         cardCall = findViewById(R.id.cardCall);
+        cardRatting = findViewById(R.id.cardRatting);
         cardMessage = findViewById(R.id.cardMessage);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open, R.string.nav_close);
 
@@ -99,6 +101,14 @@ public class AdminHome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminHome.this, AdminUserList.class));
+            }
+        });
+
+        cardRatting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminHome.this, AdminRattingList.class));
+
             }
         });
 

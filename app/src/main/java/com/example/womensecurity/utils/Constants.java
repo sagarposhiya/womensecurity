@@ -22,5 +22,7 @@ public class Constants {
     public static final String Messages = "messages";
     public static final String UserName = "UserName";
     public static final String CallCount = "CallCount";
+    public static final String RattingCount = "RattingCount";
+    public static final String RATTING = "ratting";
     public static final String MessageCount = "MessageCount";
 }

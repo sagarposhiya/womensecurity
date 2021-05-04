@@ -139,6 +139,7 @@ public class SacnnerActivity extends AppCompatActivity {
                         //startActivity(new Intent(MainActivity.this, Dashboard.class));
                     } else {
                         Toast.makeText(this, "You are not able to login", Toast.LENGTH_SHORT).show();
+                        saveTask(adharCard);
                         //  startActivity(new Intent(MainActivity.this, Dashboard.class));
                     }
                 } catch (IOException e) {

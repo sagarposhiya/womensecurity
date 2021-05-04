@@ -482,7 +482,6 @@ public class Dashboard extends AppCompatActivity {
 
     private void addEmegencyCall(String numberOne) {
 
-
         String userId = AppUtils.getStringPreference(Dashboard.this, Constants.userId);
         String id = AppUtils.getStringPreference(Dashboard.this, Constants.CallCount);
         if (id == ""){
