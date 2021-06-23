@@ -43,6 +43,7 @@ import com.example.womensecurity.models.User;
 import com.example.womensecurity.utils.AppUtils;
 import com.example.womensecurity.utils.Constants;
 import com.example.womensecurity.utils.GPSTracker;
+import com.example.womensecurity.views.FAQActivity;
 import com.example.womensecurity.views.HomeActivity;
 import com.example.womensecurity.views.MainChat;
 import com.google.android.material.navigation.NavigationView;
@@ -134,6 +135,9 @@ public class Dashboard extends AppCompatActivity {
 //                break;
                     case R.id.nav_rating:
                         startActivity(new Intent(Dashboard.this, User_Ratting.class));
+                        break;
+                    case R.id.nav_faq:
+                        startActivity(new Intent(Dashboard.this, FAQActivity.class));
                         break;
 //            case R.id.nav_logout:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

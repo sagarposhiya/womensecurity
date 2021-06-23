@@ -22,6 +22,10 @@
         android:icon="@drawable/ic_tips"
         android:title="Tips &amp; Tricks" />
 
+    <item
+        android:id="@+id/nav_faq"
+        android:icon="@drawable/ic_tips"
+        android:title="FAQ" />
 
     <item
         android:id="@+id/nav_rating"

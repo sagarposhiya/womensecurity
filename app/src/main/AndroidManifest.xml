@@ -38,7 +38,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.AdminRattingList"></activity>
+        <activity android:name=".views.FAQActivity"></activity>
+        <activity android:name=".views.AdminRattingList" />
         <activity android:name=".AdminProfile" />
         <activity android:name=".User_Ratting" />
         <activity android:name=".views.AdminMessageList" />
