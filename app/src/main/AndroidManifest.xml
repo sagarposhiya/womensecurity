@@ -38,7 +38,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.FAQActivity"></activity>
+        <activity android:name=".views.AdminStoryListActivity"></activity>
+        <activity
+            android:name=".views.StoryUploadActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".views.TipsAndTricksActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".views.FAQActivity" />
         <activity android:name=".views.AdminRattingList" />
         <activity android:name=".AdminProfile" />
         <activity android:name=".User_Ratting" />
@@ -52,7 +59,13 @@
         <activity android:name=".AdminForgotPass" />
         <activity android:name=".AdminRegister" />
         <activity android:name=".AdminLogin" />
-        <activity android:name=".AdminUser" />
+        <activity android:name=".AdminUser">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -90,11 +103,13 @@
         <activity android:name=".Dashboard" />
         <activity android:name=".views.MainChat" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity> <!-- uCrop cropping activity -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

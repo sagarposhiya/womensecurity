@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteTextColor"
+    tools:context=".fragments.TipsAndTricksFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="•	At Home"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Don’t open doorto strangers" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Have good door locks, close doors and windows" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Draw curtains and shut blinds at night" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="•	Shopping"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Park in well-it area close to destination" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Avoid shopping alone" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Do not put your purse in a shopping cart" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="•	Traveling"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Tell your family member about where you are going" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Don’t trust people too quickly and stay safe at your lodging" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Always on your location from your device " />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Keep your valuable with you" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="•	Online"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Don’t share private photos" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Don’t shar your location online" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Don’t share your personal information with strangers and keep it private " />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="•	In Parties"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Limit or avoid alcohol consumption" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Always use safety app for your emergency" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	be sure to contact with friends if necessary" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="•	Out Alone"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Avoid isolated area " />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Be aware of the surroundings" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Stick to the routes you know well" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="•	In the Car"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Always lock doors and windows " />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Avoid poorly lit parking area" />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Hold keys in your hands when approaching the car " />
+
+            <TextView
+                android:textColor="@color/register_bk_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="o	Don’t give lift to unknown person. " />
+
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:checked="true"
+                        android:id="@+id/rbEnglish"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"/>
+
+                    <TextView
+                        android:layout_toRightOf="@id/rbEnglish"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:text="English"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rbHindi"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"/>
+
+                    <TextView
+                        android:layout_toRightOf="@id/rbHindi"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:text="Hindi"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rbGUj"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"/>
+
+                    <TextView
+                        android:layout_toRightOf="@id/rbGUj"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:text="Gujarati"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

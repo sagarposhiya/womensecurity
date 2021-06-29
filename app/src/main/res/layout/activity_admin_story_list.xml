@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    tools:context=".views.AdminStoryListActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Gajera Rekhaben Bharatbhai"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/txtNameUnder"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:background="#000"
+            android:text="Gajera Rekhaben Bharatbhai"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/txtRatting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Story :- \n On the morning of December 23, 2014, as a 30-year-old doctor was riding to work in New Delhi, two men on a motorcycle intercepted her scooter. While one grabbed her handbag, another sprayed the contents of a syringe at her face. It was filled with acid. The liquid quickly ate through her skin and facial tissue. She is currently undergoing treatment and may lose the sight in one eye."
+            android:textAlignment="textStart"
+            android:textSize="18dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Rajvi Kirankumar Contractor"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:background="#000"
+            android:text="Rajvi Kirankumar Contractor"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Story :- \n A woman in Lucknow has been attacked with acid for the fourth time since 2011, Indian media reported. Violence against women very often goes unpunished in India, with several gang rape cases causing nationwide uproar.
+        Indian police and media said Sunday that a 35-year-old woman was raped Saturday night outside her hostel in Lucknow, a northern Indian city in Uttar Pradesh state.
+        She is in hospital; she can't talk yet. She has injuries on her face. We are investigating the case,police officer Abhay Kumar Prasad said.She was outside her hostel when someone came and threw acid on her…,
+         Prasad added."
+            android:textSize="18dp" />
+    </LinearLayout>
+
+</ScrollView>

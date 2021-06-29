@@ -1,6 +1,7 @@
 package com.example.womensecurity;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
@@ -46,6 +47,8 @@ import com.example.womensecurity.utils.GPSTracker;
 import com.example.womensecurity.views.FAQActivity;
 import com.example.womensecurity.views.HomeActivity;
 import com.example.womensecurity.views.MainChat;
+import com.example.womensecurity.views.StoryUploadActivity;
+import com.example.womensecurity.views.TipsAndTricksActivity;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -125,24 +128,59 @@ public class Dashboard extends AppCompatActivity {
                     case R.id.nav_account:
                         startActivity(new Intent(Dashboard.this, User_Profile.class));
                         break;
-//            case R.id.nav_story:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new SearchFragment()).commit();
-//                break;
-//            case R.id.nav_tips:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new SearchFragment()).commit();
-//                break;
+            case R.id.nav_story:
+                startActivity(new Intent(Dashboard.this, StoryUploadActivity.class));
+                break;
+            case R.id.nav_tips:
+                startActivity(new Intent(Dashboard.this, TipsAndTricksActivity.class));
+                break;
                     case R.id.nav_rating:
                         startActivity(new Intent(Dashboard.this, User_Ratting.class));
                         break;
                     case R.id.nav_faq:
                         startActivity(new Intent(Dashboard.this, FAQActivity.class));
                         break;
-//            case R.id.nav_logout:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new SearchFragment()).commit();
-//                break;
+            case R.id.nav_logout:
+//                new AlertDialog.Builder(Dashboard.this)
+//                        .setIcon(android.R.drawable.ic_dialog_alert)
+//                        .setTitle("Logout")
+//                        .setMessage("Are you sure you want to logout?")
+//                        .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+//                        {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                finish();
+//                            }
+//
+//                        })
+//                        .setNegativeButton("No", null)
+//                        .show();
+
+                AlertDialog.Builder b=  new  AlertDialog.Builder(Dashboard.this)
+                        .setTitle("Review and Rate Women Security App!")
+                        .setMessage("Click on OK to review and rate Women Security, your feedback" +
+                                "and ratings are greatly apreciated! We need your help to improve our app in order to provide you with a better" +
+                                " experience. Thanks!")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+
+
+                                    }
+
+
+                                }
+                        )
+                        .setNegativeButton("CANCEL",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+                                        dialog.cancel();
+                                    }
+                                }
+                        );
+                b.show();
+                break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
